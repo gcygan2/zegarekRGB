@@ -20,14 +20,14 @@ Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 uint32_t resistorColor(int digit) {
   switch (digit) {
     case 0: return strip.Color(0, 0, 0);               // czarny
-    case 1: return strip.Color(139, 69, 19);           // brazowy
+    case 1: return strip.Color(100, 30, 10);           // brazowy
     case 2: return strip.Color(255, 0, 0);             // czerwony
-    case 3: return strip.Color(255, 165, 0);           // pomaranczowy
-    case 4: return strip.Color(255, 200, 0);           // zolty
+    case 3: return strip.Color(255, 40, 0);           // pomaranczowy
+    case 4: return strip.Color(255, 100, 0);            // zolty
     case 5: return strip.Color(0, 255, 0);             // zielony
     case 6: return strip.Color(0, 0, 255);             // niebieski
-    case 7: return strip.Color(128, 0, 128);           // fioletowy
-    case 8: return strip.Color(128, 128, 128);         // szary
+    case 7: return strip.Color(128, 0, 148);           // fioletowy
+    case 8: return strip.Color(100, 100, 100);         // szary
     case 9: return strip.Color(255, 255, 255);         // bialy
   }
   return strip.Color(0, 0, 0);
