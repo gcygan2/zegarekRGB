@@ -11,5 +11,4 @@
     3. Wyświetlanie czasu na kolorowych diodach LED. Wymagana od użytkownika znajomość standardowego kodu barwnego stosowanego do oznaczania rezystorów.
     4. Zasilanie z portu USB.
     
-[Filmik](https://rumble.com/v74gbwc-zegar-rgb.html)
 [HTerm](https://www.der-hammer.info/pages/terminal.html)
