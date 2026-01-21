@@ -12,4 +12,5 @@
     4. Zasilanie z portu USB.
     
 [Filmik](https://rumble.com/v74gbwc-zegar-rgb.html)
+
 [HTerm](Hhttps://www.der-hammer.info/pages/terminal.html)
