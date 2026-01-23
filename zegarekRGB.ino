@@ -23,7 +23,7 @@ int tik = 0;
 uint32_t resistorColor(int digit) {
   switch (digit) {
     case 0: return strip.Color(0, 0, 0);               // czarny
-    case 1: return strip.Color(80, 20, 10);           // brazowy
+    case 1: return strip.Color(50, 10, 5);           // brazowy
     case 2: return strip.Color(255, 0, 0);             // czerwony
     case 3: return strip.Color(255, 40, 0);           // pomaranczowy
     case 4: return strip.Color(255, 100, 0);            // zolty
@@ -145,8 +145,8 @@ void loop() {
     strip.setPixelColor(4, strip.Color(0, 0, 0));
   } else {
     tik = 1;
-    strip.setPixelColor(3, strip.Color(20, 20, 60));
-    strip.setPixelColor(4, strip.Color(20, 20, 60));
+    strip.setPixelColor(3, strip.Color(20, 20, 20));
+    strip.setPixelColor(4, strip.Color(20, 20, 20));
   }
 
   strip.setPixelColor(5, resistorColor(m1));
