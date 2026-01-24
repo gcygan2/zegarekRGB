@@ -23,13 +23,13 @@ int tik = 0;
 uint32_t resistorColor(int digit) {
   switch (digit) {
     case 0: return strip.Color(0, 0, 0);               // czarny
-    case 1: return strip.Color(50, 10, 5);           // brazowy
+    case 1: return strip.Color(70, 10, 2);           // brazowy
     case 2: return strip.Color(255, 0, 0);             // czerwony
-    case 3: return strip.Color(255, 40, 0);           // pomaranczowy
-    case 4: return strip.Color(255, 100, 0);            // zolty
-    case 5: return strip.Color(0, 255, 0);             // zielony
-    case 6: return strip.Color(0, 0, 255);             // niebieski
-    case 7: return strip.Color(128, 0, 148);           // fioletowy
+    case 3: return strip.Color(255, 30, 0);           // pomaranczowy
+    case 4: return strip.Color(128, 55, 0);            // zolty
+    case 5: return strip.Color(0, 128, 0);             // zielony
+    case 6: return strip.Color(0, 0, 128);             // niebieski
+    case 7: return strip.Color(64, 0, 74);           // fioletowy
     case 8: return strip.Color(20, 20, 20);         // szary
     case 9: return strip.Color(255, 255, 255);         // bialy
   }
