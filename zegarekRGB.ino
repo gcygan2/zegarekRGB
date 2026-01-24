@@ -22,23 +22,23 @@ int tik = 0;
 // Funkcja zwracajaca kolor dla cyfry 0 - 9
 uint32_t resistorColor(int digit) {
   switch (digit) {
-    case 0: return strip.Color(0, 0, 0);               // czarny
-    case 1: return strip.Color(70, 10, 2);           // brazowy
-    case 2: return strip.Color(255, 0, 0);             // czerwony
-    case 3: return strip.Color(255, 30, 0);           // pomaranczowy
-    case 4: return strip.Color(128, 55, 0);            // zolty
-    case 5: return strip.Color(0, 128, 0);             // zielony
-    case 6: return strip.Color(0, 0, 128);             // niebieski
-    case 7: return strip.Color(64, 0, 74);           // fioletowy
-    case 8: return strip.Color(20, 20, 20);         // szary
-    case 9: return strip.Color(255, 255, 255);         // bialy
+    case 0: return strip.Color(0, 0, 0);         // czarny
+    case 1: return strip.Color(70, 10, 2);       // brazowy
+    case 2: return strip.Color(255, 0, 0);       // czerwony
+    case 3: return strip.Color(255, 30, 0);      // pomaranczowy
+    case 4: return strip.Color(128, 55, 0);      // zolty
+    case 5: return strip.Color(0, 128, 0);       // zielony
+    case 6: return strip.Color(0, 0, 128);       // niebieski
+    case 7: return strip.Color(64, 0, 74);       // fioletowy
+    case 8: return strip.Color(20, 20, 20);      // szary
+    case 9: return strip.Color(255, 255, 255);   // bialy
   }
   return strip.Color(0, 0, 0);
 }
 
 void writeStringToEEPROM(int addr, const String &data) {
   int len = data.length();
-  EEPROM.write(addr, len);  // zapisujemy długość
+  EEPROM.write(addr, len);
   for (int i = 0; i < len; i++) {
     EEPROM.write(addr + 1 + i, data[i]);
   }
@@ -71,11 +71,11 @@ String readSerialWithTrigger() {
     Serial.read();
   }
 
-  Serial.println("Wpisz dane sieci w formacie:<ssid>\\<haslo>. Masz na to 30 s.");
+  Serial.println("Wpisz dane sieci w formacie:<ssid>\\<haslo>. Masz na to minute");
 
   start = millis();
   while (!Serial.available()) {
-    if (millis() - start > 30000) {
+    if (millis() - start > 60000) {
       return "";
     }
     delay(5);
