@@ -4,7 +4,7 @@
 2. Pobieranie czasu z serwera NTP.
 3. Wyświetlanie czasu na kolorowych diodach LED. Wymagana znajomość standardowego kodu barwnego stosowanego do oznaczania rezystorów.
 4. Zasilanie z portu USB.
-![prezentacja](https://github.com/gcygan2/zegarekRGB/blob/main/rys.png)
+![prezentacja](rys.png)
 ## Schemat
 ```
 ESP32 +3.3V ------------------------> VCC WS2812
