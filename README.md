@@ -1,9 +1,10 @@
 # Zegar RGB (Smartclock)
 ## Opis
-1. Urządzenie zrealizowane na mikrokomputerze z modułem ESP32 wyposażone w interfejs sieci bezprzewodowej (tzw. WiFi). 
+1. Urządzenie zrealizowane na ESP32 wyposażone w interfejs sieci bezprzewodowej (tzw. WiFi). 
 2. Pobieranie czasu z serwera NTP.
-3. Wyświetlanie czasu na kolorowych diodach LED. Wymagana od użytkownika znajomość standardowego kodu barwnego stosowanego do oznaczania rezystorów.
+3. Wyświetlanie czasu na kolorowych diodach LED. Wymagana znajomość standardowego kodu barwnego stosowanego do oznaczania rezystorów.
 4. Zasilanie z portu USB.
+![prezentacja](https://github.com/gcygan2/zegarekRGB/blob/main/rys.png)
 ## Schemat
 ```
 ESP32 +3.3V ------------------------> VCC WS2812
