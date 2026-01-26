@@ -57,7 +57,7 @@ String readStringFromEEPROM(int addr) {
 
 String readSerialWithTrigger() {
   unsigned long start = millis();
-  Serial.println("Wcisnij dowolny klawisz, aby skonfigurowac siec WiFi.");
+  Serial.println("Wcisnij Enter, aby skonfigurowac siec WiFi.");
   while (!Serial.available()) {
     if (millis() - start > 2000) {
       return "";
