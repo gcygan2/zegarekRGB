@@ -1,4 +1,4 @@
-![prezentacja](rys.png)
+![prezentacja](rgb1.jpg)
 ## Schemat elektryczny
 ```
 ESP32 +3.3V ------------------------> VCC WS2812
