@@ -1,4 +1,4 @@
-Instrukcja obsługi dla zwykłych użytkowników
+## Instrukcja obsługi dla zwykłych użytkowników
     1. Pobierz i uruchom program HTerm lub inny.
     2. Podłącz zegarek do portu USB i sprawdź w „menedżerze urządzeń”, na którym porcie pojawi się zegarek (szukaj układu CH340).
     3. W programie Hterm wybierz w polu „Port” oznaczenie portu zgodnie z p. 2. Baud – 115200, „Data” – 8, „Stop” – 1, „Parity” – None, „Newline at” – CR+LF, „Send on enter” – CR. Odznacz pole „Show newline character” (rys. 1). Kliknij przycisk „Connect”.
