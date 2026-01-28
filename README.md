@@ -5,7 +5,8 @@
     4. Wciśnij przycisk RESET w zegarku. Możesz to zrobić długopisem, wkrętakiem lub małym palcem.
     5. W oknie „Received Data” Powinien pojawić się komunikat podobny do tego „Wciśnij Enter, aby skonfigurować WiFi”. Zrób to. Przed wciśnięciem klawisza upewnij się, że kursor znajduje się w oknie „Input control”.
     6. Od momentu wciśnięcia klawisza „Enter” masz, zgodnie z komunikatem w oknie „Received data”, jedną minutę na wpisanie nazwy SSID dostępnej sieci WiFi oraz klucza do tej sieci. Między nazwą, a kluczem jest odwrotny ukośnik. Po wpisaniu danych wciśnij „Enter”.
-[HTerm](https://www.der-hammer.info/pages/terminal.html) 
+[HTerm](https://www.der-hammer.info/pages/terminal.html)
+![rys. 1](rys1.jpg)
 ![prezentacja](rgb1.jpg)
 ## Schemat elektryczny
 ```
