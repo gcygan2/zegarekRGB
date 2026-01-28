@@ -7,7 +7,7 @@
     6. Od momentu wciśnięcia klawisza „Enter” masz, zgodnie z komunikatem w oknie „Received data”, jedną minutę na wpisanie nazwy SSID dostępnej sieci WiFi oraz klucza do tej sieci. Między nazwą, a kluczem jest odwrotny ukośnik. Po wpisaniu danych wciśnij „Enter”.
 [HTerm](https://www.der-hammer.info/pages/terminal.html)
 
-![rys. 1](rys1.jpg)
+![rys. 1](rys1.png)
 
 ![prezentacja](rgb1.jpg)
 ## Schemat elektryczny
