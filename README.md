@@ -2,14 +2,15 @@
 1. Pobierz i uruchom program HTerm ([HTerm](https://www.der-hammer.info/pages/terminal.html)) lub inny.
 2. Podłącz zegarek do portu USB i sprawdź w „menedżerze urządzeń”, na którym porcie pojawi się zegarek (szukaj układu CH340).
 3. W programie Hterm wybierz w polu „Port” oznaczenie portu zgodnie z p. 2.
-    - Baud – 115200, 
-    - „Data” – 8, „Stop” – 1, 
+    - "Baud" – 115200, 
+    - „Data” – 8,
+    - „Stop” – 1, 
     - „Parity” – None, 
     - „Newline at” – CR+LF, 
     - „Send on enter” – CR. 
     - Odznacz pole „Show newline character” (rys. 1). 
     - Kliknij przycisk „Connect”.
-    ![rys. 1](rys1.png)
+![rys. 1](rys1.png)
 5. Wciśnij przycisk RESET w zegarku. Możesz to zrobić długopisem, wkrętakiem lub małym palcem.
 6. W oknie „Received Data” Powinien pojawić się komunikat podobny do tego 
 ```
