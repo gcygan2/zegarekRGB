@@ -14,6 +14,7 @@
 „Wciśnij Enter, aby skonfigurować WiFi”. 
 ```
 Zrób to. Przed wciśnięciem klawisza upewnij się, że kursor znajduje się w oknie „Input control”.
+
 6. Od momentu wciśnięcia klawisza „Enter” masz, zgodnie z komunikatem w oknie „Received data”, jedną minutę na wpisanie nazwy SSID dostępnej sieci WiFi oraz klucza do tej sieci. Między nazwą, a kluczem jest odwrotny ukośnik. Po wpisaniu danych wciśnij „Enter”.
 ![rys. 1](rys1.png)
 ## Instrukcja obsługi dla programistów
