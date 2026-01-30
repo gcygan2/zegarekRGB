@@ -1,5 +1,5 @@
 ## Instrukcja obsługi dla zwykłych użytkowników
-1. Pobierz i uruchom program HTerm ([HTerm](https://www.der-hammer.info/pages/terminal.html)) lub inny.
+1. Pobierz i uruchom program [HTerm](https://www.der-hammer.info/pages/terminal.html).
 2. Podłącz zegarek do portu USB i sprawdź w „menedżerze urządzeń”, na którym porcie pojawi się zegarek (szukaj układu CH340).
 3. W programie Hterm wybierz w polu „Port” oznaczenie portu zgodnie z p. 2.
     - "Baud" – 115200, 
