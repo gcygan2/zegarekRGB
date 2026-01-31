@@ -1,3 +1,10 @@
+## Opis
+Zegarek po włączeniu zasilania pobiera godzinę z internetu zapisuje w RTC układu ESP32.
+W pętli odczytuje czas z RTC i wyświetla na kolorowych diodach LED.
+![zdjecie](rgb1.jpg)
+### Modernizacja
+1. Normalnie czas nie jest wyświetlany
+2. Wciśnięcie przycisku powoduje wyświetlenie czasu na diodach przez 5 s.
 ## Instrukcja obsługi dla zwykłych użytkowników
 1. Pobierz i uruchom program [HTerm](https://www.der-hammer.info/pages/terminal.html).
 2. Podłącz zegarek do portu USB i sprawdź w „menedżerze urządzeń”, na którym porcie pojawi się zegarek (szukaj układu CH340).
@@ -25,7 +32,6 @@ Zrób to. Przed wciśnięciem klawisza upewnij się, że kursor znajduje się w 
 2. Dodaj płytkę esp32.
 ![rys. 1](arduino.png)
 
-![prezentacja](rgb1.jpg)
 ## Schemat elektryczny
 ```
 ESP32 +3.3V ------------------------> VCC WS2812
