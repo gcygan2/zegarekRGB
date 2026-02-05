@@ -30,8 +30,11 @@ Zrób to. Przed wciśnięciem klawisza upewnij się, że kursor znajduje się w 
 ## Instrukcja obsługi dla programistów
 1. Zainstaluj środowisko Arduino.
 2. Dodaj [płytkę](https://espressif.github.io/arduino-esp32/package_esp32_index.json) esp32.
-
-
+    1. W polu "Dodatkowe adresy URL do menedżera płytek" wklej: https://espressif.github.io/arduino-esp32/package_esp32_index.json
+    2. Wybierz Tools → Board → Boards Manager
+    3. Wpisz w wyszukiwarkę: esp32 Powinien pojawić się pakiet od Espressif Systems.
+    4. Kliknij Zainstaluj.
+    5. Po instalacji przejdź do: Narzędzia → Płytka → ESP32 Arduino i wybierz model DOIT ESP32 DEVKIT V1.
 ![rys. 1](arduino.png)
 
 ## Schemat elektryczny
