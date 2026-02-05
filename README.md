@@ -29,7 +29,9 @@ Zrób to. Przed wciśnięciem klawisza upewnij się, że kursor znajduje się w 
 
 ## Instrukcja obsługi dla programistów
 1. Zainstaluj środowisko Arduino.
-2. Dodaj płytkę esp32.
+2. Dodaj [płytkę](https://espressif.github.io/arduino-esp32/package_esp32_index.json) esp32.
+
+
 ![rys. 1](arduino.png)
 
 ## Schemat elektryczny
