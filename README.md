@@ -35,6 +35,10 @@ Zrób to. Przed wciśnięciem klawisza upewnij się, że kursor znajduje się w 
     3. Wpisz w wyszukiwarkę: esp32 Powinien pojawić się pakiet od Espressif Systems.
     4. Kliknij Zainstaluj.
     5. Po instalacji przejdź do: Narzędzia → Płytka → ESP32 Arduino i wybierz model DOIT ESP32 DEVKIT V1.
+3. Dodaj bibliotekę Adafruit NeoPixel
+    1. Wejdź w Narzędzia → Zarządzaj bibliotekami… (lub Sketch → Include Library → Manage Libraries…)
+    2. W polu wyszukiwania wpisz: Adafruit NeoPixel
+    3. Wybierz bibliotekę od Adafruit i kliknij Install
 ![rys. 1](arduino.png)
 
 ## Schemat elektryczny
