@@ -5,6 +5,7 @@
 
 #define LED_PIN 5
 #define LED_COUNT 8
+#define GRZYBEK 25
 
 const int EEPROM_SIZE = 512;
 const int START_ADDR = 0;
@@ -18,6 +19,7 @@ const int   daylightOffset_sec = 3600; // Zmiana czasu
 
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 int tik = 0;
+volatile int pokaz = 20;
 
 // Funkcja zwracajaca kolor dla cyfry 0 - 9
 uint32_t resistorColor(int digit) {
@@ -34,6 +36,12 @@ uint32_t resistorColor(int digit) {
     case 9: return strip.Color(255, 255, 255);   // bialy
   }
   return strip.Color(0, 0, 0);
+}
+
+void handleInterrupt ()
+{
+  Serial.println("Przerwanie");
+  pokaz = 20;
 }
 
 void writeStringToEEPROM(int addr, const String &data) {
@@ -79,7 +87,7 @@ String readSerialWithTrigger() {
       return "";
     }
     delay(5);
-  }
+    }
 
   String input = Serial.readStringUntil('\n');
   input.trim();
@@ -89,6 +97,9 @@ String readSerialWithTrigger() {
 
 
 void setup() {
+  pinMode(GRZYBEK, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(GRZYBEK), handleInterrupt, FALLING);
+  
   Serial.begin(115200);
   EEPROM.begin(EEPROM_SIZE);
 
@@ -133,25 +144,30 @@ void loop() {
 
   int m1 = minute / 10;
   int m2 = minute % 10;
-
-  strip.clear();
-
-  strip.setPixelColor(0, resistorColor(h1));
-  strip.setPixelColor(2, resistorColor(h2));
-
-  if (tik) {
-    tik = 0;
-    strip.setPixelColor(3, strip.Color(0, 0, 0));
-    strip.setPixelColor(4, strip.Color(0, 0, 0));
+  if (pokaz) {
+    strip.clear();
+  
+    strip.setPixelColor(0, resistorColor(h1));
+    strip.setPixelColor(2, resistorColor(h2));
+  
+    if (tik) {
+      tik = 0;
+      strip.setPixelColor(3, strip.Color(0, 0, 0));
+      strip.setPixelColor(4, strip.Color(0, 0, 0));
+    } else {
+      tik = 1;
+      strip.setPixelColor(3, strip.Color(20, 20, 20));
+      strip.setPixelColor(4, strip.Color(20, 20, 20));
+    }
+  
+    strip.setPixelColor(5, resistorColor(m1));
+    strip.setPixelColor(7, resistorColor(m2));
+  
+    strip.show();
+    pokaz--;
   } else {
-    tik = 1;
-    strip.setPixelColor(3, strip.Color(20, 20, 20));
-    strip.setPixelColor(4, strip.Color(20, 20, 20));
+    strip.clear();
+    strip.show();
   }
-
-  strip.setPixelColor(5, resistorColor(m1));
-  strip.setPixelColor(7, resistorColor(m2));
-
-  strip.show();
   delay(500);
 }
