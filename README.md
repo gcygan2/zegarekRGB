@@ -1,7 +1,7 @@
 ## Opis
 Zegarek po włączeniu zasilania pobiera godzinę z internetu zapisuje w RTC układu ESP32.
 W pętli odczytuje czas z RTC i wyświetla na kolorowych diodach LED.
-![zdjecie](rgb1.jpg)
+![zdjecie](rgb2.jpg)
 ### Modernizacja
 1. Normalnie czas nie jest wyświetlany
 2. Wciśnięcie przycisku powoduje wyświetlenie czasu na diodach przez 5 s.
