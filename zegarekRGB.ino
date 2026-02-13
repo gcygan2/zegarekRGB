@@ -1,5 +1,7 @@
 #include <WiFi.h>
 #include <Adafruit_NeoPixel.h>
+#include <WebServer.h>
+//#include <Preferences.h>
 #include "time.h"
 #include <EEPROM.h>
 
@@ -20,6 +22,23 @@ const int   daylightOffset_sec = 3600; // Zmiana czasu
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 int tik = 0;
 volatile int pokaz = 20;
+
+// Strona HTML z formularzem
+String formPage() {
+  String ssid = prefs.getString("ssid", "");
+  String key = prefs.getString("key", "");
+
+  return String(
+    "<html><body>"
+    "<h2>Ustaw dane użytkownika</h2>"
+    "<form method='POST' action='/save'>"
+    "SSID: <input name='ssid' value='" + ssid + "'><br><br>"
+    "Klucz: <input name='key' value='" + key + "'><br><br>"
+    "<input type='submit' value='Zapisz'>"
+    "</form>"
+    "</body></html>"
+  );
+}
 
 // Funkcja zwracajaca kolor dla cyfry 0 - 9
 uint32_t resistorColor(int digit) {
@@ -102,7 +121,15 @@ void setup() {
   
   Serial.begin(115200);
   EEPROM.begin(EEPROM_SIZE);
-
+  // Sprawdzenie przycisku podczas startu
+  if (digitalRead(GRZYBEK) == LOW) {
+    apMode = true;
+    Serial.println("Start w trybie AP");
+    setupAP();
+  } else {
+    apMode = false;
+    Serial.println("Normalny start (bez AP)");
+  }
   String input = readSerialWithTrigger();
   if (input.length() > 0) {
     input.trim();
@@ -171,3 +198,64 @@ void loop() {
   }
   delay(500);
 }
+/*
+#include <WiFi.h>
+#include <WebServer.h>
+#include <Preferences.h>
+
+#define BUTTON_PIN 25
+
+Preferences prefs;
+WebServer server(80);
+
+bool apMode = false;
+
+
+
+void handleRoot() {
+  server.send(200, "text/html", formPage());
+}
+
+void handleSave() {
+  if (server.hasArg("imie") && server.hasArg("nazw")) {
+    prefs.putString("imie", server.arg("imie"));
+    prefs.putString("nazw", server.arg("nazw"));
+    server.send(200, "text/html", "<html><body><h3>Zapisano!</h3><a href='/'>Powrót</a></body></html>");
+  } else {
+    server.send(400, "text/plain", "Brak danych");
+  }
+}
+
+void setupAP() {
+  WiFi.mode(WIFI_AP);
+
+  WiFi.softAPConfig(
+    IPAddress(192,168,31,1),
+    IPAddress(192,168,31,1),
+    IPAddress(255,255,255,0)
+  );
+
+  WiFi.softAP("zegarek", "12345678");
+
+  server.on("/", handleRoot);
+  server.on("/save", HTTP_POST, handleSave);
+  server.begin();
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+
+  prefs.begin("dane", false);
+
+
+}
+
+void loop() {
+  if (apMode) {
+    server.handleClient();
+  }
+}
+
+*/
