@@ -1,7 +1,6 @@
 #include <WiFi.h>
 #include <Adafruit_NeoPixel.h>
 #include <WebServer.h>
-//#include <Preferences.h>
 #include "time.h"
 #include <EEPROM.h>
 
@@ -23,23 +22,59 @@ Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 int tik = 0;
 volatile int pokaz = 20;
 
+WebServer server(80);
+bool apMode = false;
+
+
 // Strona HTML z formularzem
 String formPage() {
-  String ssid = prefs.getString("ssid", "");
-  String key = prefs.getString("key", "");
-
   return String(
     "<html><body>"
-    "<h2>Ustaw dane użytkownika</h2>"
     "<form method='POST' action='/save'>"
-    "SSID: <input name='ssid' value='" + ssid + "'><br><br>"
-    "Klucz: <input name='key' value='" + key + "'><br><br>"
+    "SSID: <input name='ssid'><br><br>"
+    "Klucz: <input name='key'><br><br>"
     "<input type='submit' value='Zapisz'>"
     "</form>"
     "</body></html>"
   );
 }
 
+void handleRoot() {
+  server.send(200, "text/html", formPage());
+}
+
+void handleSave() {
+  Serial.println("Args: " + String(server.args()));
+
+  if (server.args() > 0) {
+    server.send(200, "text/plain", "Dane sa");
+  } else {
+    server.send(400, "text/plain", "Brak danych");
+  }
+  
+  if (server.hasArg("ssid") && server.hasArg("key")) {
+    EEPROM.begin(EEPROM_SIZE);
+    writeStringToEEPROM(START_ADDR, server.arg("ssid")+'\\'+server.arg("key"));
+    EEPROM.commit();
+  }
+}
+
+void setupAP() {
+  WiFi.mode(WIFI_AP);
+
+  WiFi.softAPConfig(
+    IPAddress(192,168,31,1),
+    IPAddress(192,168,31,1),
+    IPAddress(255,255,255,0)
+  );
+
+  WiFi.softAP("zegarek", "12345678");
+
+  server.on("/", handleRoot);
+  server.on("/save", HTTP_POST, handleSave);
+  server.begin();
+}
+  
 // Funkcja zwracajaca kolor dla cyfry 0 - 9
 uint32_t resistorColor(int digit) {
   switch (digit) {
@@ -129,133 +164,77 @@ void setup() {
   } else {
     apMode = false;
     Serial.println("Normalny start (bez AP)");
+    String input = readSerialWithTrigger();
+    if (input.length() > 0) {
+      input.trim();
+      Serial.println(input);
+      writeStringToEEPROM(START_ADDR, input);
+      EEPROM.commit();
+    }
+  
+    strip.begin();
+    strip.show();
+    String stored = readStringFromEEPROM(START_ADDR);
+  
+    int sep = stored.indexOf('\\');
+    if (sep != -1) { 
+      ssid = stored.substring(0, sep);
+      password = stored.substring(sep + 1);
+    }
+    Serial.println(ssid);
+    Serial.println(password);
+    WiFi.begin(ssid, password);
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(300);
+    }
+    configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
   }
-  String input = readSerialWithTrigger();
-  if (input.length() > 0) {
-    input.trim();
-    Serial.println(input);
-    writeStringToEEPROM(START_ADDR, input);
-    EEPROM.commit();
-  }
-
-  strip.begin();
-  strip.show();
-  String stored = readStringFromEEPROM(START_ADDR);
-
-  int sep = stored.indexOf('\\');
-  if (sep != -1) { 
-    ssid = stored.substring(0, sep);
-    password = stored.substring(sep + 1);
-  }
-  Serial.println(ssid);
-  Serial.println(password);
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(300);
-  }
-  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
 }
 
 void loop() {
   struct tm timeinfo;
-  if (!getLocalTime(&timeinfo)) {
-    return;
-  }
-
-  int hour   = timeinfo.tm_hour;
-  int minute = timeinfo.tm_min;
-
-  // Rozbijanie na cyfry
-  int h1 = hour / 10;
-  int h2 = hour % 10;
-
-  int m1 = minute / 10;
-  int m2 = minute % 10;
-  if (pokaz) {
-    strip.clear();
-  
-    strip.setPixelColor(0, resistorColor(h1));
-    strip.setPixelColor(2, resistorColor(h2));
-  
-    if (tik) {
-      tik = 0;
-      strip.setPixelColor(3, strip.Color(0, 0, 0));
-      strip.setPixelColor(4, strip.Color(0, 0, 0));
-    } else {
-      tik = 1;
-      strip.setPixelColor(3, strip.Color(20, 20, 20));
-      strip.setPixelColor(4, strip.Color(20, 20, 20));
-    }
-  
-    strip.setPixelColor(5, resistorColor(m1));
-    strip.setPixelColor(7, resistorColor(m2));
-  
-    strip.show();
-    pokaz--;
-  } else {
-    strip.clear();
-    strip.show();
-  }
-  delay(500);
-}
-/*
-#include <WiFi.h>
-#include <WebServer.h>
-#include <Preferences.h>
-
-#define BUTTON_PIN 25
-
-Preferences prefs;
-WebServer server(80);
-
-bool apMode = false;
-
-
-
-void handleRoot() {
-  server.send(200, "text/html", formPage());
-}
-
-void handleSave() {
-  if (server.hasArg("imie") && server.hasArg("nazw")) {
-    prefs.putString("imie", server.arg("imie"));
-    prefs.putString("nazw", server.arg("nazw"));
-    server.send(200, "text/html", "<html><body><h3>Zapisano!</h3><a href='/'>Powrót</a></body></html>");
-  } else {
-    server.send(400, "text/plain", "Brak danych");
-  }
-}
-
-void setupAP() {
-  WiFi.mode(WIFI_AP);
-
-  WiFi.softAPConfig(
-    IPAddress(192,168,31,1),
-    IPAddress(192,168,31,1),
-    IPAddress(255,255,255,0)
-  );
-
-  WiFi.softAP("zegarek", "12345678");
-
-  server.on("/", handleRoot);
-  server.on("/save", HTTP_POST, handleSave);
-  server.begin();
-}
-
-void setup() {
-  Serial.begin(115200);
-
-  pinMode(BUTTON_PIN, INPUT_PULLUP);
-
-  prefs.begin("dane", false);
-
-
-}
-
-void loop() {
   if (apMode) {
     server.handleClient();
+  } else {
+  
+    if (!getLocalTime(&timeinfo)) {
+      return;
+    }
+  
+    int hour   = timeinfo.tm_hour;
+    int minute = timeinfo.tm_min;
+  
+    // Rozbijanie na cyfry
+    int h1 = hour / 10;
+    int h2 = hour % 10;
+  
+    int m1 = minute / 10;
+    int m2 = minute % 10;
+    if (pokaz) {
+      strip.clear();
+    
+      strip.setPixelColor(0, resistorColor(h1));
+      strip.setPixelColor(2, resistorColor(h2));
+    
+      if (tik) {
+        tik = 0;
+        strip.setPixelColor(3, strip.Color(0, 0, 0));
+        strip.setPixelColor(4, strip.Color(0, 0, 0));
+      } else {
+        tik = 1;
+        strip.setPixelColor(3, strip.Color(20, 20, 20));
+        strip.setPixelColor(4, strip.Color(20, 20, 20));
+      }
+    
+      strip.setPixelColor(5, resistorColor(m1));
+      strip.setPixelColor(7, resistorColor(m2));
+    
+      strip.show();
+      pokaz--;
+    } else {
+      strip.clear();
+      strip.show();
+    }
+    delay(500);
   }
 }
-
-*/

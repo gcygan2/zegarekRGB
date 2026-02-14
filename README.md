@@ -1,11 +1,14 @@
 ## Opis
 Zegarek po włączeniu zasilania pobiera godzinę z internetu zapisuje w RTC układu ESP32.
 W pętli odczytuje czas z RTC i wyświetla na kolorowych diodach LED.
+Wciśnięcie przycisku powoduje wyświetlenie czasu na diodach przez 10 s.
 ![zdjecie](rgb2.jpg)
-### Modernizacja
-1. Normalnie czas nie jest wyświetlany
-2. Wciśnięcie przycisku powoduje wyświetlenie czasu na diodach przez 5 s.
-## Instrukcja obsługi dla zwykłych użytkowników
+## Instrukcja konfigurowania sieci WiFi za pomocą przeglądarki internetowej
+1. Wciśnij i przytrzymaj przycisk na przednim panelu w zegarku i włącz zasilanie zegarka lub wciśnij na chwilę przycisk reseet w zegarku, zwolnij przycisk na przednim panelu.
+2. Przy pomocy dowolnego urządzenia z przeglądarką internetową połącz się z siecią WiFi o nazwie "zegarek". Klucz sieciowy (hasło) to 12345678.
+3. Wpisz w przeglądarce adres 192.168.31.1, wypełnij formularz i kliknij "Zapisz".
+4. Ponownie uruchom zegarek poprzez ponowne włączenia zasilania lub wciśnięcie przycisku "reset".
+## Instrukcja konfigurowania sieci WiFi z terminala
 1. Pobierz i uruchom program [HTerm](https://www.der-hammer.info/pages/terminal.html).
 2. Podłącz zegarek do portu USB i sprawdź w „menedżerze urządzeń”, na którym porcie pojawi się zegarek (szukaj układu CH340).
 3. W programie Hterm wybierz w polu „Port” oznaczenie portu zgodnie z p. 2.
@@ -47,7 +50,9 @@ ESP32 +3.3V ------------------------> VCC WS2812
 
 ESP32 GND --------------------------> GND WS2812
 
-                    330 Ω
-ESP32 GPIO 5 ------[    ]-----------> DIN WS2812
+ESP32 GPIO 5 -----------------------> DIN WS2812
+
+                   przycisk NO
+ESP32 GPIO 25 -----[    ]-----------> GND
 ```
 
