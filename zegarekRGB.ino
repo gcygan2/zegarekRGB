@@ -25,7 +25,6 @@ volatile int pokaz = 20;
 WebServer server(80);
 bool apMode = false;
 
-
 // Strona HTML z formularzem
 String formPage() {
   return String(
@@ -68,7 +67,7 @@ void setupAP() {
     IPAddress(255,255,255,0)
   );
 
-  WiFi.softAP("zegarek", "12345678");
+  WiFi.softAP("zegarekRGB", "12345678");
 
   server.on("/", handleRoot);
   server.on("/save", HTTP_POST, handleSave);
@@ -95,7 +94,11 @@ uint32_t resistorColor(int digit) {
 void handleInterrupt ()
 {
   Serial.println("Przerwanie");
-  pokaz = 20;
+  if (pokaz == 19) {
+    pokaz = 200;
+  } else {
+    pokaz = 20;
+  }
 }
 
 void writeStringToEEPROM(int addr, const String &data) {

@@ -4,8 +4,8 @@ W pętli odczytuje czas z RTC i wyświetla na kolorowych diodach LED.
 Wciśnięcie przycisku powoduje wyświetlenie czasu na diodach przez 10 s.
 ![zdjecie](rgb2.jpg)
 ## Instrukcja konfigurowania sieci WiFi za pomocą przeglądarki internetowej
-1. Wciśnij i przytrzymaj przycisk na przednim panelu w zegarku i włącz zasilanie zegarka lub wciśnij na chwilę przycisk reseet w zegarku, zwolnij przycisk na przednim panelu.
-2. Przy pomocy dowolnego urządzenia z przeglądarką internetową połącz się z siecią WiFi o nazwie "zegarek". Klucz sieciowy (hasło) to 12345678.
+1. Wciśnij i przytrzymaj przycisk na przednim panelu w zegarku i włącz zasilanie zegarka lub wciśnij na chwilę przycisk reset w zegarku, zwolnij przycisk na przednim panelu.
+2. Przy pomocy dowolnego urządzenia z przeglądarką internetową połącz się z siecią WiFi o nazwie "zegarekRGB". Klucz sieciowy (hasło) to 12345678.
 3. Wpisz w przeglądarce adres 192.168.31.1, wypełnij formularz i kliknij "Zapisz".
 ![przegladarka](www.png)
 4. Ponownie uruchom zegarek poprzez ponowne włączenia zasilania lub wciśnięcie przycisku "reset".
