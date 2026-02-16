@@ -47,7 +47,7 @@ void handleSave() {
   Serial.println("Args: " + String(server.args()));
 
   if (server.args() > 0) {
-    server.send(200, "text/plain", "Dane sa");
+    server.send(200, "text/plain", "OK");
   } else {
     server.send(400, "text/plain", "Brak danych");
   }
@@ -97,7 +97,7 @@ void handleInterrupt ()
   //Serial.println("Przerwanie");
   portENTER_CRITICAL_ISR(&mux);
   if (pokaz == 19 || pokaz > 190) {
-    pokaz = 200;
+    pokaz = 2000;
   } else {
     pokaz = 20;
   }
