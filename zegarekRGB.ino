@@ -21,6 +21,7 @@ const int   daylightOffset_sec = 3600; // Zmiana czasu
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 int tik = 0;
 volatile int pokaz = 20;
+portMUX_TYPE mux = portMUX_INITIALIZER_UNLOCKED;
 
 WebServer server(80);
 bool apMode = false;
@@ -93,12 +94,14 @@ uint32_t resistorColor(int digit) {
 
 void handleInterrupt ()
 {
-  Serial.println("Przerwanie");
-  if (pokaz == 19) {
+  //Serial.println("Przerwanie");
+  portENTER_CRITICAL_ISR(&mux);
+  if (pokaz == 19 || pokaz > 190) {
     pokaz = 200;
   } else {
     pokaz = 20;
   }
+  portEXIT_CRITICAL_ISR(&mux);
 }
 
 void writeStringToEEPROM(int addr, const String &data) {
@@ -130,7 +133,7 @@ String readSerialWithTrigger() {
     delay(5);
   }
 
-  char trigger = Serial.read();
+  Serial.read();
 
   while (Serial.available()) {
     Serial.read();
@@ -233,7 +236,9 @@ void loop() {
       strip.setPixelColor(7, resistorColor(m2));
     
       strip.show();
-      pokaz--;
+      portENTER_CRITICAL(&mux);
+      pokaz = pokaz - 1;
+      portEXIT_CRITICAL(&mux);
     } else {
       strip.clear();
       strip.show();
