@@ -1,22 +1,20 @@
 #include <WiFi.h>
 #include <Adafruit_NeoPixel.h>
 #include <WebServer.h>
-#include "time.h"
+#include <time.h>
 #include <EEPROM.h>
 
 #define LED_PIN 5
 #define LED_COUNT 8
 #define GRZYBEK 25
 
-const int EEPROM_SIZE = 512;
-const int START_ADDR = 0;
+#define EEPROM_SIZE 512
+#define START_ADDR 0
 
 String ssid;
 String password;
 
 const char* ntpServer = "pool.ntp.org";
-const long  gmtOffset_sec = 3600;      // Polska UTC+1
-const int   daylightOffset_sec = 3600; // Zmiana czasu
 
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 int tik = 0;
@@ -76,7 +74,7 @@ void setupAP() {
 }
   
 // Funkcja zwracajaca kolor dla cyfry 0 - 9
-uint32_t resistorColor(int digit) {
+uint32_t int2color(int digit) {
   switch (digit) {
     case 0: return strip.Color(0, 0, 0);         // czarny
     case 1: return strip.Color(70, 10, 2);       // brazowy
@@ -193,7 +191,7 @@ void setup() {
     while (WiFi.status() != WL_CONNECTED) {
       delay(300);
     }
-    configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
+    configTime(3600, 3600, ntpServer);//UTC+1, zmiana czasu
   }
 }
 
@@ -216,33 +214,30 @@ void loop() {
   
     int m1 = minute / 10;
     int m2 = minute % 10;
-    if (pokaz) {
-      strip.clear();
+    strip.clear();
+    if (pokaz) {    
+      strip.setPixelColor(0, int2color(h1));
+      strip.setPixelColor(2, int2color(h2));
     
-      strip.setPixelColor(0, resistorColor(h1));
-      strip.setPixelColor(2, resistorColor(h2));
-    
+      //migajacy dwukropek w kolorach czarnym i szarym pomiedzy godzinami i minutami
       if (tik) {
         tik = 0;
-        strip.setPixelColor(3, strip.Color(0, 0, 0));
-        strip.setPixelColor(4, strip.Color(0, 0, 0));
+        strip.setPixelColor(3, int2color(0));
+        strip.setPixelColor(4, int2color(0));
       } else {
         tik = 1;
-        strip.setPixelColor(3, strip.Color(20, 20, 20));
-        strip.setPixelColor(4, strip.Color(20, 20, 20));
+        strip.setPixelColor(3, int2color(8));
+        strip.setPixelColor(4, int2color(8));
       }
     
-      strip.setPixelColor(5, resistorColor(m1));
-      strip.setPixelColor(7, resistorColor(m2));
+      strip.setPixelColor(5, int2color(m1));
+      strip.setPixelColor(7, int2color(m2));
     
-      strip.show();
       portENTER_CRITICAL(&mux);
       pokaz = pokaz - 1;
       portEXIT_CRITICAL(&mux);
-    } else {
-      strip.clear();
-      strip.show();
     }
+    strip.show();
     delay(500);
   }
 }
