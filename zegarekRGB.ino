@@ -16,6 +16,11 @@ String password;
 
 const char* ntpServer = "pool.ntp.org";
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+const long  gmtOffset_sec = 3600L;      // Polska UTC+1
+const int   daylightOffset_sec = 3600L // Zmiana czasu
+>>>>>>> Stashed changes
 =======
 const long  gmtOffset_sec = 3600L;      // Polska UTC+1
 const int   daylightOffset_sec = 3600L // Zmiana czasu
