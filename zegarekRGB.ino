@@ -15,6 +15,11 @@ String ssid;
 String password;
 
 const char* ntpServer = "pool.ntp.org";
+<<<<<<< Updated upstream
+=======
+const long  gmtOffset_sec = 3600L;      // Polska UTC+1
+const int   daylightOffset_sec = 3600L // Zmiana czasu
+>>>>>>> Stashed changes
 
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 int tik = 0;
