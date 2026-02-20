@@ -4,15 +4,17 @@ W pętli odczytuje czas z RTC i wyświetla na kolorowych diodach LED.
 Wciśnięcie przycisku powoduje wyświetlenie czasu na diodach przez 10 s.
 ![zdjecie](rgb2.jpg)
 ## Instrukcja konfigurowania sieci WiFi za pomocą przeglądarki internetowej
-1. Wciśnij i przytrzymaj przycisk na przednim panelu w zegarku i włącz zasilanie zegarka lub wciśnij na chwilę przycisk reset w zegarku, zwolnij przycisk na przednim panelu.
-2. Przy pomocy dowolnego urządzenia z przeglądarką internetową połącz się z siecią WiFi o nazwie "zegarekRGB". Klucz sieciowy (hasło) to 12345678.
-3. Wpisz w przeglądarce adres 192.168.31.1, wypełnij formularz i kliknij "Zapisz".
+1. Wciśnij i przycisk na przednim panelu w zegarku i ciągle trzymając ten przycisk, włącz zasilanie zegarka lub wciśnij na chwilę przycisk reset w zegarku (obok złącza USB).
+Zwolnij przycisk na przednim panelu.
+2. Przy pomocy komputera (smartfona, tabletu, laptopa) połącz się z siecią WiFi o nazwie zegarekRGB. Klucz sieciowy (hasło) to 12345678.
+3. Wpisz w przeglądarce internetowej adres 192.168.31.1, wypełnij formularz i kliknij Zapisz.
 ![przegladarka](www.png)
 4. Ponownie uruchom zegarek poprzez ponowne włączenia zasilania lub wciśnięcie przycisku "reset".
 ## Instrukcja konfigurowania sieci WiFi z terminala
-1. Pobierz i uruchom program [HTerm](https://www.der-hammer.info/pages/terminal.html).
+1. Uruchom program Arduino lub [HTerm](https://www.der-hammer.info/pages/terminal.html).
 2. Podłącz zegarek do portu USB i sprawdź  w "Menedżerze urządzeń", na którym porcie pojawi się zegarek (szukaj układu CH340).
-3. W programie Hterm wybierz w polu „Port” oznaczenie portu zgodnie z p. 2.
+3. Jeżeli używasz Arduino wybierz port (Tools->Port) zgodnie z p. 2. Otwórz okno "Serial Monitor" i wybierz prędkość 115200.
+4. Jeżeli używasz Hterm wybierz w polu "Port" oznaczenie portu zgodnie z p. 2.
     - "Baud" – 115200, 
     - "Data" – 8,
     - "Stop" – 1, 
