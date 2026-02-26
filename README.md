@@ -36,29 +36,30 @@ Zrób to. Przed wciśnięciem klawisza upewnij się, że kursor znajduje się w 
 ## Instrukcja obsługi dla programistów
 1. Zainstaluj środowisko Arduino.
 2. Dodaj płytkę "esp32".
-    1. W menu "Plik->Preferencje->Dodatkowe adresy URL do menedżera płytek" dopisz: 
+    1. W menu "File->Preferences->Additional boards manager URLs" dopisz: 
     ```
     https://espressif.github.io/arduino-esp32/package_esp32_index.json
     ```
-    2. Wybierz z menu "Narzędzie → Płytka → Menedżer płytek".
+    ![rys. 1](preferencje.png)
+    2. W menu "Tools->Board->Boards Manager...".
     3. Wpisz w wyszukiwarkę "esp32" Powinien pojawić się pakiet od Espressif Systems.
-    4. Kliknij "Instaluj".
-    5. Po instalacji przejdź do menu "Narzędzia → Płytka → esp32" i wybierz model DOIT ESP32 DEVKIT V1.
+    4. Kliknij "Install".
+    5. Po instalacji przejdź do menu "Tools->Board->esp32" i wybierz model "DOIT ESP32 DEVKIT V1".
     ![rys. 1](arduino.png)
 3. Dodaj bibliotekę Adafruit NeoPixel.
-    1. Wejdź w "Narzędzia → Zarządzaj bibliotekami".
+    1. Wejdź w "Tools->Manage Libraries...".
     2. W polu wyszukiwania wpisz "Adafruit NeoPixel".
     3. Wybierz bibliotekę od Adafruit i kliknij "Install".
 
 ## Schemat elektryczny
 ```
-ESP32 +3.3V ------------------------> VCC WS2812
+ESP32 +3.3V ------------------> VCC WS2812
 
-ESP32 GND --------------------------> GND WS2812
+ESP32 GND --------------------> GND WS2812
 
-ESP32 GPIO 5 -----------------------> DIN WS2812
+ESP32 GPIO 5 -----------------> DIN WS2812
 
-                   przycisk NO
-ESP32 GPIO 25 -----[    ]-----------> GND
+                 przycisk NO
+ESP32 GPIO 25 -----[    ]-----> GND
 ```
 
