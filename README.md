@@ -40,12 +40,12 @@ Zrób to. Przed wciśnięciem klawisza upewnij się, że kursor znajduje się w 
     ```
     https://espressif.github.io/arduino-esp32/package_esp32_index.json
     ```
-    ![rys. 1](preferencje.png)
+    ![rys. 1](preferences.png)
     2. W menu "Tools->Board->Boards Manager...".
     3. Wpisz w wyszukiwarkę "esp32" Powinien pojawić się pakiet od Espressif Systems.
     4. Kliknij "Install".
     5. Po instalacji przejdź do menu "Tools->Board->esp32" i wybierz model "DOIT ESP32 DEVKIT V1".
-    ![rys. 1](arduino.png)
+    ![rys. 2](arduino.png)
 3. Dodaj bibliotekę Adafruit NeoPixel.
     1. Wejdź w "Tools->Manage Libraries...".
     2. W polu wyszukiwania wpisz "Adafruit NeoPixel".
