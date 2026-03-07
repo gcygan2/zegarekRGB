@@ -34,8 +34,8 @@ Zrób to. Przed wciśnięciem klawisza upewnij się, że kursor znajduje się w 
 6. Od momentu wciśnięcia klawisza "Enter" masz, zgodnie z komunikatem w oknie "Received data", jedną minutę na wpisanie nazwy SSID dostępnej sieci WiFi oraz klucza do tej sieci. Między nazwą, a kluczem jest odwrotny ukośnik. Po wpisaniu danych wciśnij "Enter".
 
 ## Instrukcja obsługi dla programistów
-1. Zainstaluj środowisko Arduino.
-2. Dodaj płytkę "esp32".
+1. Zainstaluj aplikację [Arduino IDE](https://www.arduino.cc/en/software/).
+2. 2. Dodaj płytkę "esp32".
     1. W menu "File->Preferences->Additional boards manager URLs" dopisz: 
     ```
     https://espressif.github.io/arduino-esp32/package_esp32_index.json
@@ -46,6 +46,7 @@ Zrób to. Przed wciśnięciem klawisza upewnij się, że kursor znajduje się w 
     4. Kliknij "Install".
     5. Po instalacji przejdź do menu "Tools->Board->esp32" i wybierz model "DOIT ESP32 DEVKIT V1".
     ![rys. 2](arduino.png)
+
 3. Dodaj bibliotekę Adafruit NeoPixel.
     1. Wejdź w "Tools->Manage Libraries...".
     2. W polu wyszukiwania wpisz "Adafruit NeoPixel".
