@@ -4,7 +4,7 @@ W pętli odczytuje czas z RTC i wyświetla na kolorowych diodach LED.
 Wciśnięcie przycisku powoduje wyświetlenie czasu na diodach przez 10 s.
 ![zdjecie](rgb2.jpg)
 ## Instrukcja konfigurowania sieci WiFi za pomocą przeglądarki internetowej
-1. Wciśnij i przycisk na przednim panelu w zegarku i ciągle trzymając ten przycisk, włącz zasilanie zegarka lub wciśnij na chwilę przycisk reset w zegarku (obok złącza USB).
+1. Wciśnij przycisk na przednim panelu w zegarku i trzymając go, włącz zasilanie zegarka lub wciśnij na chwilę przycisk reset w zegarku (obok złącza USB).
 Zwolnij przycisk na przednim panelu.
 2. Przy pomocy komputera (smartfona, tabletu, laptopa) połącz się z siecią WiFi o nazwie zegarekRGB. Klucz sieciowy (hasło) to 12345678.
 3. Wpisz w przeglądarce internetowej adres 192.168.31.1, wypełnij formularz i kliknij Zapisz.
@@ -59,7 +59,8 @@ ESP32 GND --------------------> GND WS2812
 
 ESP32 GPIO 5 -----------------> DIN WS2812
 
-                 przycisk NO
-ESP32 GPIO 25 -----[    ]-----> GND
+ESP32 GPIO 25 -----+
+                    /--] Przycisk
+ESP32 GND ---------+
 ```
 
