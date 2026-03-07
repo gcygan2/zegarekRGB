@@ -40,7 +40,7 @@ Zrób to. Przed wciśnięciem klawisza upewnij się, że kursor znajduje się w 
     ```
     https://espressif.github.io/arduino-esp32/package_esp32_index.json
     ```
-    ![rys. 1](preferences.png)
+    ![rys. 1](preferences.jpg)
     2. W menu "Tools->Board->Boards Manager...".
     3. Wpisz w wyszukiwarkę "esp32" Powinien pojawić się pakiet od Espressif Systems.
     4. Kliknij "Install".
