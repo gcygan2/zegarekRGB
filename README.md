@@ -35,7 +35,7 @@ Zrób to. Przed wciśnięciem klawisza upewnij się, że kursor znajduje się w 
 
 ## Instrukcja obsługi dla programistów
 1. Zainstaluj aplikację [Arduino IDE](https://www.arduino.cc/en/software/).
-2. 2. Dodaj płytkę "esp32".
+2. Dodaj płytkę "esp32".
     1. W menu "File->Preferences->Additional boards manager URLs" dopisz: 
     ```
     https://espressif.github.io/arduino-esp32/package_esp32_index.json
@@ -46,12 +46,10 @@ Zrób to. Przed wciśnięciem klawisza upewnij się, że kursor znajduje się w 
     4. Kliknij "Install".
     5. Po instalacji przejdź do menu "Tools->Board->esp32" i wybierz model "DOIT ESP32 DEVKIT V1".
     ![rys. 2](arduino.png)
-
 3. Dodaj bibliotekę Adafruit NeoPixel.
     1. Wejdź w "Tools->Manage Libraries...".
     2. W polu wyszukiwania wpisz "Adafruit NeoPixel".
     3. Wybierz bibliotekę od Adafruit i kliknij "Install".
-
 ## Schemat elektryczny
 ```
 ESP32 +3.3V ------------------> VCC WS2812
