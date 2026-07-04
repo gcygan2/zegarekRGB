@@ -27,13 +27,13 @@ bool apMode = false;
 // Strona HTML z formularzem
 String formPage() {
   return String(
-    "<html><head><meta name='viewport' content='width=device-width, initial-scale=1.0'></head><body><div style='background-color: white;max-width: 400px;margin: auto;'>"
+    "<html><head><meta name='viewport' content='width=device-width, initial-scale=1.0'></head>"
+    "<body><div style='background-color: white;max-width: 400px;margin: auto;'>"
     "<form method='POST' action='/save'>"
     "SSID: <input name='ssid'><br><br>"
     "Klucz: <input name='key'><br><br>"
     "<input type='submit' value='Zapisz'>"
-    "</form>"
-    "</body></html>"
+    "</form></div></body></html>"
   );
 }
 
